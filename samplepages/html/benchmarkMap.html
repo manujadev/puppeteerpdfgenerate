@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="demoapp">
+
+<head>
+    <title>BENCHMARK MAP PAGE TITLE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="../bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="../dist/ui-leaflet.min.js"></script>
+    <link rel="stylesheet" href="../bower_components/leaflet/dist/leaflet.css" />
+    <script>
+    var app = angular.module("demoapp", ['ui-leaflet']);
+    app.controller("BasicDoubleMapSharingAttributesController", ["$scope", "leafletData", function($scope, leafletData) {
+        angular.extend($scope, {
+            center: {
+                lat: 43.7350,
+                lng: -79.3734,
+                zoom: 11
+            },
+            defaults: {
+                scrollWheelZoom: false
+            },
+            tiles: {
+                url: "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png"
+            },
+            markers1: {
+                one: {
+                    lat: 43.75,
+                    lng: -79.56
+                },
+                two: {
+                    lat: 43.76,
+                    lng: -79.50
+                }
+            },
+            markers2: {
+                one: {
+                    lat: 43.75,
+                    lng: -79.56
+                },
+                two: {
+                    lat: 43.75,
+                    lng: -79.45
+                },
+                three: {
+                    lat: 43.81,
+                    lng: -79.26
+                }
+            },
+            mapsArray: []
+
+        });
+
+        for (i = 0; i < 30; i++) {
+
+
+            var zoom=Math.ceil(Math.random()*6)+10;
+            var lat=-37.814+Math.random();
+            var lng=144.96332+Math.random();
+
+            $scope.mapsArray.push({
+                id: "map_" + i,
+                center: {
+                    lat: lat,
+                    lng: lng,
+                    zoom: zoom
+                }
+            })
+        }
+    }]);
+    </script>
+</head>
+
+<body ng-controller="BasicDoubleMapSharingAttributesController">
+    <div ng-repeat="map in mapsArray">
+        <div style="width: 100%;">
+            <leaflet id="{{map.id}}" tiles="tiles" defaults="defaults" markers="markers1" lf-center="map.center" width="100%" height="520px"></leaflet>
+        </div>
+        <br>
+        <br>
+    </div>
+    <h1>Two maps sharing center example</h1>
+    <p>Drag the center in any of the maps</p>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+body{
+    margin: 0 25mm 0 25mm;
+}
+
+@media all {
+  .page-break	{ display: none; }
+}
+
+@media print {
+  .page-break	{ display: block; page-break-before: always; }
+}
