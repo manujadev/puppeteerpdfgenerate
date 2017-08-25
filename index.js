@@ -4,6 +4,7 @@ const puppeteer = require('puppeteer');
 
 let urlListJson = 
   [
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/testformatting.html"}/*,
   {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
   {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
   {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
@@ -14,8 +15,7 @@ let urlListJson =
   {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
   {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
   {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"}
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"}*/
   ]
 
 async function generatePDF(inputPagURL, outputFileName) {
@@ -41,16 +41,16 @@ async function generatePDF(inputPagURL, outputFileName) {
 
   console.log('TITLE:', pageTitle);
 
-  // Wait till the expected page title is loaded
-  while (pageTitle !== 'Finished'){
-      await wait(200);  // Wait 200 miliseconds
+  // // Wait till the expected page title is loaded
+  // while (pageTitle !== 'Finished'){
+  //     await wait(200);  // Wait 200 miliseconds
 
-      pageTitle = await page.evaluate(() => {
-        return document.title;
-      });
+  //     pageTitle = await page.evaluate(() => {
+  //       return document.title;
+  //     });
       
-      console.log('TITLE:', pageTitle);
-  }
+  //     console.log('TITLE:', pageTitle);
+  // }
 
   await page.pdf({path: outputFileName, format: 'A4', displayHeaderFooter:true});
 
