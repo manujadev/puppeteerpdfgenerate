@@ -4,18 +4,21 @@ const puppeteer = require('puppeteer');
 
 let urlListJson = 
   [
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/testformatting.html"}/*,
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"},
-  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdate.html"}*/
+  /*{"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/testformatting.html"},*/
+  {"url": "http://leafletjs.com/examples/choropleth/example.html"}, 
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"},
+  {"url": "file:///home/manuja/DEV/puppeteerdev/samplepages/html/benchmarkMapUpdateb.html"}
   ]
 
 async function generatePDF(inputPagURL, outputFileName) {
@@ -58,7 +61,7 @@ async function generatePDF(inputPagURL, outputFileName) {
   browser.close();
 
 };
-
+7
 function wait(ms) {
   return new Promise(resolve => setTimeout(() => resolve(), ms));
 }
@@ -73,7 +76,7 @@ async function loadGenerateRequests() {
   let arrPromises = [];
 
   for(let urlEntity of urlListJson){
-    arrPromises.push(executeCommand(urlEntity.url, './temp/' + Math.random(1, 999) + '.pdf'));
+    arrPromises.push(executeCommand(urlEntity.url, './temp/' + (Math.random(1, 999) * Math.pow(10, 16)) + '.pdf'));
     //await generatePDF(urlEntity.url, './temp/' + Math.random(1, 999) + '.pdf');
   }
 
