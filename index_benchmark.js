@@ -18,7 +18,7 @@ async function generatePDF(inputPagURL, outputFileName) {
       let browser = await puppeteer.launch({'ignoreHTTPSErrors': true});
       let page = await browser.newPage();
     
-      try {
+    try {
       await page.goto(inputPagURL, {
         waitUntil: 'networkidle'
       });
@@ -27,25 +27,25 @@ async function generatePDF(inputPagURL, outputFileName) {
       console.log('PAGE GOTO ERROR:', error.message);
     }
 
-      // Loading the page title
-      let pageTitle = '';
+    // Loading the page title
+    let pageTitle = '';
       
+    pageTitle = await page.evaluate(() => {
+      return document.title;
+    });
+
+    console.log('TITLE:', pageTitle);
+
+    // Wait till the expected page title is loaded
+    while (pageTitle.startsWith("LOADING") || pageTitle.startsWith("OneMap") || pageTitle.startsWith("FAILED") || pageTitle.startsWith("WARNING")){
+        await wait(200);  // Wait 200 miliseconds
+
       pageTitle = await page.evaluate(() => {
-        return document.title;
-      });
-
-      console.log('TITLE:', pageTitle);
-
-      // Wait till the expected page title is loaded
-      while (pageTitle.startsWith("LOADING") || pageTitle.startsWith("OneMap") || pageTitle.startsWith("FAILED") || pageTitle.startsWith("WARNING")){
-          await wait(200);  // Wait 200 miliseconds
-
-          pageTitle = await page.evaluate(() => {
-            return document.title;
-          });
-          
-          console.log('TITLE:', pageTitle);
-      }
+          return document.title;
+        });
+        
+        console.log('TITLE:', pageTitle);
+    }
 
     try {
       await page.pdf({path: outputFileName, format: 'A4', displayHeaderFooter:true});
@@ -71,9 +71,14 @@ function wait(ms) {
   return new Promise(resolve => setTimeout(() => resolve(), ms));
 }
 
-const executeCommand =  function (inputPagURL, outputFileName){
+const executeCommand = async function (inputPagURL, outputFileName){
   return new Promise ((resolve, reject)=> {
       generatePDF(inputPagURL, outputFileName)
+      resolve();
+  })
+  .catch((error) => {
+    console.log('Error occured', outputFileName);
+    reject(error);
   });
 }
 
@@ -86,7 +91,7 @@ async function loadGenerateRequests() {
   }
 
   Promise.all(arrPromises)
-  .then(function(){
+  .then(() => {
     console.log('Completed all PDF Generations');
   })
   .catch(function(){
