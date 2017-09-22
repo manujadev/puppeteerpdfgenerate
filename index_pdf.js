@@ -14,16 +14,16 @@ function wait(ms) {
 
   let timeStart = new Date();
 
-  await page.setRequestInterceptionEnabled(true);
+  //await page.setRequestInterceptionEnabled(true);
 
-
-  await page.setExtraHTTPHeaders([{'authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzZXR0aW5ncyI6eyJkYXRhUmVnaW9ucyI6WyJRTERfQiIsIk5TV19TIiwiVklDX0IiLCJWSUNfRyIsIlZJQ19NIl0sImhhc0N1c3RvbUxheWVycyI6InRydWUiLCJBdXRoMFByb2ZpbGUiOnRydWUsIkF1dGgwR3JvdXBzIjpbIlRyYWN0X0RldlVzZXJfQW5hbHl0aWNfR3JvdXAiLCJPcmdfQ2hhcnRlcktDX0N1c3RvbV9EYXRhX0FwdCJdLCJBdXRoMElEIjoiYXV0aDB8NTk3ZTg0ZDZhZGUwNTcxMDk1MDA1ODI5Iiwib3JnYW5pc2F0aW9uIjoiVFJBQ1QiLCJkZWZhdWx0Q2l0eSI6IlZJQ19NIiwiZGF0YVJlZ2lvbiI6IlZJQ19NIiwidWFkYXRhaW5hYyI6IlcxdGJNQ3d3TERBc01Dd3dMREFzTUN3d0xERmRYU3hiV3pBc01GMHNXekFzTUN3d0xEQXNNRjBzV3pBc01Dd3dMREJkTEZzeExERmRYU3hiV3pBc01GMWRYUT09In0sInNrIjoiMTNjMDllMzQtMGQ0YS00M2QyLWI0NTEtZmI5ZWM0MGYwN2NhIiwic3ViIjoibWpheWF3YXJkaGFuYUB0cmFjdC5uZXQuYXUiLCJzdSI6Ik1hbnVqYSBKYXlhd2FyZGhhbmEiLCJhbGlhcyI6ImFwcF9rZXlzL29uZW1hcDMiLCJpYXQiOjE1MDU4MDQ4MjAsImV4cCI6MTUwNTgwNjYyMCwiaXNzIjoib25lbWFwLmNvbS5hdSJ9.XrbxuDG0E8P_ImIQojky7uflsXTEOyuC9YAoIQS5CR4JMOIHM3RjbLu5KYXWvt6HlKFpbzikLwMXNkFbm_I8KpwnoFtK8KmQyzX1Ir_DHKP9W_DE-W1yUsl1AZzn8c1iUTnfalOpCk6Pcr9RM1Xf8-yGG30GKsB3R0D4EaKPrOZcyQ92i_0WhagZf6A_CRbVVLgb0-Ruo2vIFP7_Tepz8k81rMAg5-esNqUiPfQcrwriL9vIaMbqROXXR7e_zhfUfqOetVsw3c-bYsnM_Tll_wkkkkdEr7rfbj572o96VkIoWfzSxFWtQaYJrOXVDKzdqZXVhcu6q1epZ36FDLX9yQ'}]);
+  //await page.setExtraHTTPHeaders({'authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzZXR0aW5ncyI6eyJkYXRhUmVnaW9ucyI6WyJRTERfQiIsIk5TV19TIiwiVklDX0IiLCJWSUNfRyIsIlZJQ19NIl0sImhhc0N1c3RvbUxheWVycyI6InRydWUiLCJBdXRoMFByb2ZpbGUiOnRydWUsIkF1dGgwR3JvdXBzIjpbIlRyYWN0X0RldlVzZXJfQW5hbHl0aWNfR3JvdXAiLCJPcmdfQ2hhcnRlcktDX0N1c3RvbV9EYXRhX0FwdCJdLCJBdXRoMElEIjoiYXV0aDB8NTk3ZTg0ZDZhZGUwNTcxMDk1MDA1ODI5Iiwib3JnYW5pc2F0aW9uIjoiVFJBQ1QiLCJkZWZhdWx0Q2l0eSI6IlZJQ19NIiwiZGF0YVJlZ2lvbiI6IlZJQ19NIiwidWFkYXRhaW5hYyI6IlcxdGJNQ3d3TERBc01Dd3dMREFzTUN3d0xERmRYU3hiV3pBc01GMHNXekFzTUN3d0xEQXNNRjBzV3pBc01Dd3dMREJkTEZzeExERXNNVjFkTEZ0Yk1Dd3dYVjFkIn0sInNrIjoiNjljMDQwNmYtMDJlOS00YTc4LWIwZGItNDNkZDdlY2NhMGVjIiwic3ViIjoibWpheWF3YXJkaGFuYUB0cmFjdC5uZXQuYXUiLCJhbGlhcyI6ImFwcF9rZXlzL29uZW1hcDMiLCJpYXQiOjE1MDU4OTA0MDksImV4cCI6MTUwNTg5MjIwOSwiaXNzIjoib25lbWFwLmNvbS5hdSJ9.nN0oOzWncBXdIxj9JhWBea0a_jCN5eTl_RM1KWRTPqn_pNUMY9vxwZxjJvsDeIqN2oaLyAsYd7fwFkuW1e-MRVHtWdnJ-eM8ksoxN86IkylB6BNAONzp3_Uxl_cnUupCA0JoUmiF-NX-dYATssHhWzZ_et1A9f_wJWutKKaLy0q680DbPRkf7lh3rxW5rwNQ4jlXhUO9ZEeCva-qHAN-FPEaMV63i6UkV-ifp3VsT0-T1nhMMsuQVK5dvmgD8eqJ4OMGOdWisWu3wDP8sMNSbnh8rrrN-_szLD6tPsWx2WS_Ffdsx4Y5Re-K3Gzv1vG7kOkXCs3Uw3DnQPic0rdjEA'});
 
 
   // Call the page launch   
   try {  
     await page.goto(inputURL,
     {
+      timeout: 60000,
       waitUntil: 'networkidle'
     });
   }
@@ -55,16 +55,16 @@ function wait(ms) {
 
   console.log('PAGE TITLE:', pageTitle);
 
-  // // Wait till the expected page title is loaded
-  // while (pageTitle.startsWith("LOADING") || pageTitle.startsWith("OneMap") || pageTitle.startsWith("FAILED") || pageTitle.startsWith("WARNING")){
-  //     //await wait(200);  // Wait 200 miliseconds
+  // Wait till the expected page title is loaded
+  while (pageTitle.startsWith("LOADING") || pageTitle.startsWith("OneMap") || pageTitle.startsWith("FAILED") || pageTitle.startsWith("WARNING")){
+      await wait(200);  // Waidt 200 miliseconds
 
-  //     pageTitle = await page.evaluate(() => {
-  //       return document.title;
-  //     });
+      pageTitle = await page.evaluate(() => {
+        return document.title;
+      });
       
-  //     console.log('TITLE:', pageTitle);
-  // }
+      console.log('TITLE:', pageTitle);
+  }
 
   
 
